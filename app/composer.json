@@ -26,7 +26,8 @@
         "symfony/runtime": "5.4.*",
         "symfony/serializer": "5.4.*",
         "symfony/validator": "5.4.*",
-        "symfony/yaml": "5.4.*"
+        "symfony/yaml": "5.4.*",
+        "zircote/swagger-php": "^4.2"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.9",
