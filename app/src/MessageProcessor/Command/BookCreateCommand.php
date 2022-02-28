@@ -19,6 +19,8 @@ class BookCreateCommand implements CommandInterface
      */
     private string $bookName;
 
+    private int $bookId;
+
     /**
      * @Assert\GreaterThan(value=0, message="Invalid author ID")
      */
@@ -27,12 +29,18 @@ class BookCreateCommand implements CommandInterface
     public function __construct(Request $request)
     {
         $this->bookName = (string) $request->request->get('book_name', '');
+        $this->bookId =  $request->request->getInt('book_id');
         $this->authorId = $request->request->getInt('author_id');
     }
 
     public function getBookName(): string
     {
         return $this->bookName;
+    }
+
+    public function getBookId(): int
+    {
+        return $this->bookId;
     }
 
     public function getAuthorId(): int

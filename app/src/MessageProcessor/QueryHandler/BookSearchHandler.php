@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\MessageProcessor\QueryHandler;
 
-use App\EntityMapper\BookMapper;
+use App\EntityMapper\BookSearchMapper;
 use App\MessageProcessor\Query\BookSearchQuery;
 use App\Repository\BookRepository;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
@@ -12,9 +12,9 @@ use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 class BookSearchHandler implements MessageHandlerInterface
 {
     private BookRepository $bookRepository;
-    private BookMapper $bookMapper;
+    private BookSearchMapper $bookMapper;
 
-    public function __construct(BookRepository $bookRepository, BookMapper $bookMapper)
+    public function __construct(BookRepository $bookRepository, BookSearchMapper $bookMapper)
     {
         $this->bookRepository = $bookRepository;
         $this->bookMapper = $bookMapper;

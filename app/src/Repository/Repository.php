@@ -5,18 +5,22 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\EntityInterface;
+use App\Repository\Exception\EntityNotFoundException;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 abstract class Repository
 {
     protected EntityManagerInterface $entityManager;
+    protected Request $request;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, RequestStack $requestStack)
     {
         $this->entityManager = $entityManager;
+        $this->request = $requestStack->getCurrentRequest();
     }
 
     public function saveOne(EntityInterface $entity): EntityInterface
@@ -51,5 +55,12 @@ abstract class Repository
         $paginator = new Paginator($query, $fetchJoinCollection);
 
         return $paginator->count();
+    }
+
+    protected function checkIfEntityFetched(?EntityInterface $entity): void
+    {
+        if (is_null($entity)) {
+            throw new EntityNotFoundException('Such entity does not exist');
+        }
     }
 }

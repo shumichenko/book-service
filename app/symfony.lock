@@ -1,4 +1,7 @@
 {
+    "behat/transliterator": {
+        "version": "v1.3.0"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -97,6 +100,9 @@
     },
     "fzaninotto/faker": {
         "version": "v1.9.2"
+    },
+    "gedmo/doctrine-extensions": {
+        "version": "v3.5.0"
     },
     "laminas/laminas-code": {
         "version": "4.5.1"
@@ -397,6 +403,9 @@
         ]
     },
     "symfony/runtime": {
+        "version": "v5.4.3"
+    },
+    "symfony/serializer": {
         "version": "v5.4.3"
     },
     "symfony/service-contracts": {

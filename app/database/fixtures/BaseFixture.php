@@ -6,7 +6,7 @@ namespace App\Fixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Faker\Factory;
+use Faker\Factory as Faker;
 use Faker\Generator;
 
 class BaseFixture extends Fixture
@@ -16,8 +16,10 @@ class BaseFixture extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        $this->faker = Factory::create();
+        $this->faker = Faker::create(Faker::DEFAULT_LOCALE);
+
         $this->objectManager = $manager;
+        $this->objectManager->clear();
     }
 
     /**

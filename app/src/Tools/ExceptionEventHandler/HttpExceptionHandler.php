@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 use Symfony\Component\Routing\Exception\MethodNotAllowedException;
+use Throwable;
 use function get_class;
 
 class HttpExceptionHandler implements ExceptionEventHandlerInterface
@@ -41,14 +42,6 @@ class HttpExceptionHandler implements ExceptionEventHandlerInterface
                 $response = ResponseMaker::notFound($exception->getMessage());
 
                 break;
-            case MethodNotAllowedException::class:
-                $response = ResponseMaker::methodNotAllowed();
-
-                break;
-            case ServiceUnavailableHttpException::class:
-                $response = ResponseMaker::serviceUnavailable();
-
-                break;
             default:
                 $response = ResponseMaker::internalServerError();
 
@@ -59,7 +52,7 @@ class HttpExceptionHandler implements ExceptionEventHandlerInterface
         $event->setResponse($response);
     }
 
-    private function log(int $statusCode, HttpExceptionInterface $exception): void
+    private function log(int $statusCode, Throwable $exception): void
     {
         switch ($statusCode) {
             case 400:

@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/book/create", methods={"POST"}, name="book_create")
+ * @Route("/{_locale}/book/create", requirements={"_locale": "ru|en"}, methods={"POST"}, name="book_create")
  */
 class BookCreateController
 {

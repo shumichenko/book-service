@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/book/{id}", requirements={"id":"\d+"}, methods={"GET"}, name="book_show")
+ * @Route("/{_locale}/book/{id}", requirements={"id":"\d+", "_locale": "ru|en"}, methods={"GET"}, name="book_show")
  */
 class BookShowController
 {

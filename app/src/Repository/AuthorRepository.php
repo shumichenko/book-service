@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\Author;
-use App\Repository\Exception\EntityNotFoundException;
-use function is_null;
 
 class AuthorRepository extends Repository
 {
@@ -20,9 +18,7 @@ class AuthorRepository extends Repository
             ->getQuery()
             ->getOneOrNullResult();
 
-        if (is_null($author)) {
-            throw new EntityNotFoundException('Such entity does not exist');
-        }
+        $this->checkIfEntityFetched($author);
 
         return $author;
     }

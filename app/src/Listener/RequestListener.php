@@ -31,6 +31,8 @@ class RequestListener implements EventSubscriberInterface
         if ($this->hasContent()) {
             $this->request->request->replace($this->getJsonDecoded());
         }
+
+        $this->request->setLocale($this->request->get('_locale', 'en'));
     }
 
     private function hasContent(): bool

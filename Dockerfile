@@ -1,5 +1,6 @@
 FROM php:7.4-fpm
 COPY ./app /srv/app
+COPY ./docker/php/memory_limit.ini /usr/local/etc/php/conf.d
 WORKDIR /srv/app
 
 RUN set -eux; \

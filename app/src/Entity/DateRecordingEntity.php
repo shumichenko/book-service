@@ -13,14 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 abstract class DateRecordingEntity implements EntityInterface
 {
     /**
-     * @ORM\Column(name="created_at", type="datetime_immutable", nullable=true)
+     * @ORM\Column(name="created_at", type="datetime_immutable", nullable=false)
      */
-    protected ?DateTimeImmutable $createdAt;
+    protected DateTimeImmutable $createdAt;
 
     /**
-     * @ORM\Column(name="updated_at", type="datetime_immutable", nullable=true)
+     * @ORM\Column(name="updated_at", type="datetime_immutable", nullable=false)
      */
-    protected ?DateTimeImmutable $updatedAt;
+    protected DateTimeImmutable $updatedAt;
 
     /**
      * @ORM\PrePersist()
@@ -43,12 +43,12 @@ abstract class DateRecordingEntity implements EntityInterface
         return $this;
     }
 
-    public function getCreatedAt(): ?DateTimeImmutable
+    public function getCreatedAt(): DateTimeImmutable
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): ?DateTimeImmutable
+    public function getUpdatedAt(): DateTimeImmutable
     {
         return $this->updatedAt;
     }
